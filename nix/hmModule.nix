@@ -1,6 +1,4 @@
 {
-  inputs,
-  system,
   pkgs,
   lib,
   ...
@@ -8,7 +6,6 @@
 {
   programs.neovim = {
     enable = true;
-    package = inputs.neovim-nightly-overlay.packages.${system}.default;
     withPython3 = true;
     extraPython3Packages = (
       ps: with ps; [

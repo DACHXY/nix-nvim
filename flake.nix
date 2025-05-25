@@ -10,13 +10,16 @@
       self,
       nixpkgs,
       flake-utils,
-      neovim-nightly-overlay,
       ...
     }@inputs:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        nix-nvim-module = import ./nix/homeModules;
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [ inputs.neovim-nightly-overlay.overlays.default ];
+        };
+        nix-nvim-module = import ./nix/homeModules { inherit pkgs; };
       in
       {
         homeManagerModules = {
