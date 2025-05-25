@@ -17,15 +17,19 @@
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ inputs.neovim-nightly-overlay.overlays.default ];
+          overlays = [ ];
         };
-        nix-nvim-module = import ./nix/homeModules { inherit pkgs; };
+        nix-nvim-module = import ./nix/homeModules self;
       in
       {
         homeManagerModules = {
           nix-nvim = nix-nvim-module;
           default = nix-nvim-module;
         };
+
+        overlays.default = pkgs.lib.composeManyExtensions [
+          inputs.neovim-nightly-overlay.overlays.default
+        ];
       }
     );
 }

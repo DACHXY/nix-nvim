@@ -1,8 +1,12 @@
+self:
 {
   pkgs,
   lib,
   ...
 }:
+let
+  inherit (pkgs.stdenv.hostPlatform) system;
+in
 {
   programs.neovim = {
     enable = true;
