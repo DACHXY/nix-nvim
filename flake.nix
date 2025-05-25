@@ -19,7 +19,7 @@
           inherit system;
           overlays = [ ];
         };
-        nix-nvim-module = import ./nix/homeModules self;
+        nix-nvim-module = import ./nix/homeModules.nix self;
       in
       {
         homeManagerModules = {
