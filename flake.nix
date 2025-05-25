@@ -1,5 +1,5 @@
 {
-  description = "Flake utils demo";
+  description = "nix neovim";
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -10,12 +10,13 @@
       self,
       nixpkgs,
       flake-utils,
+      neovim-nightly-overlay,
+      ...
     }@inputs:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = nixpkgs.legacyPackages.${system};
-        nix-nvim-module = import ./nix/homeModules { inherit inputs system pkgs; };
+        nix-nvim-module = import ./nix/homeModules;
       in
       {
         homeManagerModules = {
