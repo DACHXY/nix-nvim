@@ -66,7 +66,7 @@ in
     ];
 
     plugins = with pkgs.vimPlugins; [
-      lazy-vim
+      lazy-nvim
     ];
 
     extraLuaConfig =
